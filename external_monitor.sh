@@ -4,7 +4,6 @@
 
 INTERNAL_SCREEN=eDP1
 EXTERNAL_SCREEN=VGA1
-NETWORK=wlp2s0-doan_wireless
 
 function activate_external {
     xrandr --output $INTERNAL_SCREEN --mode 1920x1080
@@ -26,21 +25,13 @@ function vga_active {
     return $?
 }
 
-function at_home {
-    ! netctl status $NETWORK | grep -q inactive
-}
-
 while true; do
-    if at_home; then
-        if ! vga_active && vga_connected; then
-            activate_external
-        fi
-
-        if vga_active && ! vga_connected; then
-            deactivate_external
-        fi
-        sleep 5s
-    else
-        sleep 10s
+    if ! vga_active && vga_connected; then
+        activate_external
     fi
+
+    if vga_active && ! vga_connected; then
+        deactivate_external
+    fi
+    sleep 5s
 done
