@@ -3,11 +3,13 @@
 #them when they are disconnected
 
 INTERNAL_SCREEN=eDP1
+INTERNAL_RESOLUTION=1920x1080
 EXTERNAL_SCREEN=VGA1
+EXTERNAL_RESOLUTION=
 
 function activate_external {
-    xrandr --output $INTERNAL_SCREEN --mode 1920x1080
-    xrandr --output $EXTERNAL_SCREEN --mode 1440x900 --right-of $INTERNAL_SCREEN
+    xrandr --output $INTERNAL_SCREEN --mode $INTERNAL_RESOLUTION
+    xrandr --output $EXTERNAL_SCREEN --mode $EXTERNAL_RESOLUTION --right-of $INTERNAL_SCREEN
     MONITOR=$EXTERNAL_SCREEN
 }
 
