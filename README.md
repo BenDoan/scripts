@@ -1,4 +1,4 @@
-Contains my personal collection of linux scripts
+Contains my personal collection of linux scripts.  Each script has a few lines of documentation at the top of the files.
 
 LICENSE
 =======
