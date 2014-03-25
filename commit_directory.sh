@@ -10,5 +10,5 @@ changed=$(git ls-files -m | tr '\n' ' ')
 other=$(git ls-files -o | tr '\n' ' ')
 date=$(date)
 
-git add .
+git add -A
 git commit -am "Added: $other-- Changed: $changed on $date"
