@@ -7,8 +7,8 @@
 cd $1
 
 # xargs trims a trailing space, only works for single lines
-changed=$(git ls-files -m | tr '\n' ' ' | xargs echo)
-other=$(git ls-files -o | tr '\n' ' ' | xargs echo)
+changed=$(basename $(git ls-files -m | tr '\n' ' ' | xargs echo))
+other=$(basename $(git ls-files -o | tr '\n' ' ' | xargs echo))
 
 message=""
 if [ "" != "$other" ]; then
