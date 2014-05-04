@@ -1,6 +1,6 @@
 #!/bin/bash
 # Performs an incremental backup to a remote client, and commits
-# the changes to a git repository
+# the changes to a git repository.  Depends on commit_directory.sh.
 #
 # Usage ./backup_to_remote directory_to_backup hostname host_location
 # Usage ./backup_to_remote ~/documents ben-vps /storage/documents-backup

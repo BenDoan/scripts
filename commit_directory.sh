@@ -6,16 +6,24 @@
 
 cd $1
 
-# xargs trims a trailing space, only works for single lines
-changed=$(basename $(git ls-files -m | tr '\n' ' ' | xargs echo))
-other=$(basename $(git ls-files -o | tr '\n' ' ' | xargs echo))
+changed=""
+for c in $(git ls-files -m); do
+    name=$(basename $c)
+    changed="$changed""$name "
+done
+
+other=""
+for c in $(git ls-files -o); do
+    name=$(basename $c)
+    other="$other""$name "
+done
 
 message=""
 if [ "" != "$other" ]; then
     message="$message""Added $other"
 fi
 if [ "" != "$other" ] && [ "" != "$changed" ]; then
-    message="$message""  --  "
+    message="$message"" --  "
 fi
 if [ "" != "$changed" ]; then
     message="$message""Changed $changed"
