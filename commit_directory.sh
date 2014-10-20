@@ -1,5 +1,4 @@
-#!/bin/bash
-# Stages all added files and changes to git and commits them.
+#!/bin/bash # Stages all added files and changes to git and commits them.
 #
 # Usage: ./commit_directory directory_to_commit
 # Usage: ./commit_directory /storage/docs-backup
