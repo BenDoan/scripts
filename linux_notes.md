@@ -13,4 +13,4 @@ Commands
 
 ## deploy python module to pypi
 
-    python setup.py register sdist bdist_wheel upload
+    python setup.py register sdist bdist bdist_wheel upload -r pypi
