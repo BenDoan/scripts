@@ -6,6 +6,7 @@
 
 import json
 import sys
+import time
 
 import perform
 
@@ -13,10 +14,6 @@ try:
     from urllib import urlopen
 except ImportError:
     from urllib.request import urlopen
-
-
-
-
 
 def main():
     URL = "https://api.github.com/users/{}/repos".format(sys.argv[1])
@@ -26,6 +23,7 @@ def main():
         url = "{}/graphs/traffic".format(repo["html_url"])
         print("Opening {}".format(url))
         perform.firefox(url, no_return=True)
+        time.sleep(.5)
 
 
 if __name__ == "__main__":
