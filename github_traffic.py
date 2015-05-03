@@ -1,5 +1,8 @@
-#!/usr/bin/env python3
-""" Usage:
+#!/usr/bin/env python
+"""
+Open's the traffic page for every repository of a user.
+
+Usage:
   github_traffic.py username
 """
 
@@ -17,13 +20,14 @@ except ImportError:
 
 def main():
     URL = "https://api.github.com/users/{}/repos".format(sys.argv[1])
-
     repos = json.loads(urlopen(URL).read().decode("utf-8"))
-    for repo in repos:
+    sorted_repos = sorted(repos, key=lambda x: x['updated_at'], reverse=True)
+
+    for repo in sorted_repos:
         url = "{}/graphs/traffic".format(repo["html_url"])
         print("Opening {}".format(url))
-        perform.firefox(url, no_return=True)
-        time.sleep(.5)
+        perform.firefox(url, nr=True)
+        time.sleep(.75)
 
 
 if __name__ == "__main__":
