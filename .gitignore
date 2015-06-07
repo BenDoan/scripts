@@ -1,2 +1,4 @@
-private
 test
+
+private/*
+!private/.gitignore
