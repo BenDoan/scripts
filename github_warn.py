@@ -19,8 +19,8 @@ except ImportError:
     from urllib.request import urlopen
 
 def main():
-    url = "https://api.github.com/users/{}/repos".format(sys.argv[1])
-    repos = json.loads(urlopen(url).read().decode("utf-8"))
+    user_url = "https://api.github.com/users/{}/repos".format(sys.argv[1])
+    repos = json.loads(urlopen(user_url).read().decode("utf-8"))
 
     last_updated_at = sorted(repos, key=lambda x: x['pushed_at'])[-1]['pushed_at']
 
