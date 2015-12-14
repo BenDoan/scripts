@@ -20,12 +20,15 @@ for line in perform.acpi().split("\n"):
 
     if "charging" in line.lower():
         charging = True
+        break
 
 if total_battery_percent < battery_threshold and not charging:
     msg = "Low battery: {}%".format(total_battery_percent)
-    perform._("i3-nagbar", "-m", msg, nr=True)
-    perform._("notify-send", msg)
 
-    pid = perform._("ps aux | grep i3-nagbar | grep -v grep | awk '{ print $2 }'", shell=True)
+    perform._("notify-send", msg)
+    perform._("i3-nagbar", "-m", msg, nr=True)
+    nag_pid = perform._("ps aux | grep i3-nagbar | grep -v grep | awk '{ print $2 }'", shell=True)
+
+
     time.sleep(45)
-    perform.kill(pid)
+    perform.kill(nag_pid)
