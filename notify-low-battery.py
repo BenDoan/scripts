@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 # Usage: ./notify-low-battery.py [threshold]
 
+import re
 import sys
 import time
 
 import perform
 
-battery_threshold = 15
+battery_threshold = 200
 if len(sys.argv) > 1:
     battery_threshold = int(sys.argv[1])
 
@@ -14,13 +15,15 @@ if len(sys.argv) > 1:
 # Battery 0: Unknown, 5%
 # Battery 1: Discharging, 1%, 00:01:15 remaining
 total_battery_percent = 0
-charging = False
+charging = True
 for line in perform.acpi().split("\n"):
-    total_battery_percent += int(line.split(" ")[3].replace(",", "").replace("%", ""))
+    battery_percent = int(re.findall("(\d+)%", line)[0])
+    total_battery_percent += battery_percent
 
-    if "charging" in line.lower():
-        charging = True
-        break
+    if "discharging" in line.lower():
+        charging = False
+
+total_battery_percent //= 2
 
 if total_battery_percent < battery_threshold and not charging:
     msg = "Low battery: {}%".format(total_battery_percent)
