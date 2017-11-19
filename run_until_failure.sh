@@ -8,12 +8,13 @@ function stop() {
     exit $code
 }
 
-while :; do
+time while :; do
     $@
 
     code=$?
     if [[ $code -ne 0 ]]; then
         stop
     fi
+    echo "Ran $i times"
     ((i++))
 done
