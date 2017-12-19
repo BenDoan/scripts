@@ -1,6 +1,13 @@
 #!/bin/bash
 
-num=$((RANDOM % 10))
+if [[ $# -eq 2 ]]; then
+    succeed_rate=$1
+else
+    succeed_rate=0.1
+fi
+
+modulus=$(echo "$succeed_rate * 100 / 1" | bc)
+num=$((RANDOM % $modulus))
 if [[ num -ge 8 ]]; then
     echo "Failure"
     exit 1
