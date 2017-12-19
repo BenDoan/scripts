@@ -23,8 +23,6 @@ for line in perform.acpi().split("\n"):
     if "discharging" in line.lower():
         charging = False
 
-total_battery_percent //= 2
-
 if total_battery_percent < battery_threshold and not charging:
     msg = "Low battery: {}%".format(total_battery_percent)
 
