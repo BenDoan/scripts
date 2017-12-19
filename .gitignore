@@ -2,3 +2,6 @@ test
 
 private/*
 !private/.gitignore
+
+tmp/
+SITE-WATCHER-DATA/
