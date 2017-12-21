@@ -4,4 +4,4 @@ private/*
 !private/.gitignore
 
 tmp/
-SITE-WATCHER-DATA/
+site-watcher-history.json
