@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-Open's the traffic page for every repository of a user.
+Opens the traffic page for every repository of a user.
 
 Usage:
   github_traffic.py username
